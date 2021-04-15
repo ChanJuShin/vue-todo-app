@@ -32,8 +32,6 @@ input:focus {
   outline: none;
 }
 .inputBox {
-  margin: 0 auto;
-  width: 700px;
   background: white;
   height: 50px;
   line-height: 50px;

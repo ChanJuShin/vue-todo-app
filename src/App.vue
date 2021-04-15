@@ -25,6 +25,10 @@ export default {
 </script>
 
 <style>
+#app {
+  margin: 0 auto;
+  width: 700px;
+}
 body {
   text-align: center;
   background-color: #F6F6F6;
