@@ -2,7 +2,7 @@
   <div id="app">
     <TodoHeader />
     <TodoInput @addTodoItem="addTodoItem"/>
-    <TodoList :todoItems="todoItems"/>
+    <TodoList :todoItems="todoItems" @removeTodoItem="removeTodoItem"/>
     <TodoFooter />
   </div>
 </template>
@@ -25,6 +25,10 @@ export default {
       var obj = { completed: false, item: newTodoItem };
       localStorage.setItem(newTodoItem, JSON.stringify(obj));
       this.todoItems.push(obj);
+    },
+    removeTodoItem: function(todoItem, index) {
+      localStorage.removeItem(todoItem.item);
+      this.todoItems.splice(index, 1)
     }
   },
   created: function() {

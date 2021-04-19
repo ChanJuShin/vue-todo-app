@@ -4,7 +4,7 @@
       <li v-for="(todoItem, index) in todoItems" :key="todoItem.item" class="shadow">
         <i class="checkBtn fas fa-check" :class="{ checkBtnCompleted: todoItem.completed }" @click="toggleComplete(todoItem)"></i>
         <span :class="{ textCompleted: todoItem.completed }">{{ todoItem.item }}</span>
-        <span class="removeBtn" @click="removeTodo(todoItem, index)">
+        <span class="removeBtn" @click="removeTodoItem(todoItem, index)">
           <i class="fas fa-trash-alt"></i>
         </span>
       </li>
@@ -17,9 +17,8 @@ export default {
   name: "TodoList",
   props: ['todoItems'],
   methods: {
-    removeTodo: function(todoItem, index) {
-      localStorage.removeItem(todoItem);
-      this.todoItems.splice(index, 1)
+    removeTodoItem: function(todoItem, index) {
+      this.$emit('removeTodoItem', todoItem, index);
     },
     toggleComplete: function(todoItem) {
       todoItem.completed = !todoItem.completed;
