@@ -1,6 +1,6 @@
 <template>
   <div class="clearAllContainer">
-    <span class="clearAllBtn" @click="clearTodo">Clear All</span>
+    <span class="clearAllBtn" @click="clearTodoItems">Clear All</span>
   </div>
 </template>
 
@@ -8,8 +8,8 @@
 export default {
   name: "TodoFooer",
   methods: {
-    clearTodo: function() {
-      localStorage.clear();
+    clearTodoItems: function() {
+      this.$emit('clearTodoItems');
     }
   }
 }
