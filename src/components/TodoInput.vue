@@ -4,15 +4,24 @@
     <span class="addContainer" @click="addTodo">
       <i class="fas fa-plus addBtn"></i>
     </span>
+    <Modal v-if="showModal">
+      <div slot="header">
+        <h3 class="modalTitle">할일 내용을 입력해주세요.</h3>
+        <button class="modalCloseBtn" @click="showModal = false" type="button">확인</button>
+      </div>
+    </Modal>
   </div>
 </template>
 
 <script>
+import Modal from "./common/Modal";
+
 export default {
   name: "TodoInput",
   data: function() {
     return {
-      newTodoItem: ''
+      newTodoItem: '',
+      showModal: false
     }
   },
   methods: {
@@ -20,11 +29,16 @@ export default {
       if (this.newTodoItem !== '') {
         this.$emit('addTodoItem', this.newTodoItem);
         this.clearInput();
+      } else {
+        this.showModal = !this.showModal;
       }
     },
     clearInput: function() {
       this.newTodoItem = '';
     }
+  },
+  components: {
+    Modal
   }
 }
 </script>
@@ -53,5 +67,17 @@ input:focus {
 .addBtn {
   color: white;
   vertical-align: middle;
+}
+.modalTitle {
+  margin: 0;
+}
+.modalCloseBtn {
+  outline: none;
+  border: 0;
+  padding: 10px;
+  background: #ddd;
+  color: black;
+  cursor: pointer;
+  border-radius: 10px;
 }
 </style>
