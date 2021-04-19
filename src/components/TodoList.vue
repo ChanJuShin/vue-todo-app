@@ -1,14 +1,14 @@
 <template>
   <div>
-    <ul>
-      <li v-for="(todoItem, index) in todoItems" :key="todoItem.item" class="shadow">
+    <transition-group name="list" tag="ul">
+      <li v-for="(todoItem, index) in todoItems" :key="todoItem.item + index" class="shadow">
         <i class="checkBtn fas fa-check" :class="{ checkBtnCompleted: todoItem.completed }" @click="toggleTodoItem(todoItem, index)"></i>
         <span :class="{ textCompleted: todoItem.completed }">{{ todoItem.item }}</span>
         <span class="removeBtn" @click="removeTodoItem(todoItem, index)">
           <i class="fas fa-trash-alt"></i>
         </span>
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
@@ -59,5 +59,12 @@ li {
 .removeBtn {
   margin-left: auto;
   color: #de4343;
+}
+.list-enter-active, .list-leave-active {
+  transition: all 1s;
+}
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>
