@@ -15,11 +15,7 @@
 <script>
 export default {
   name: "TodoList",
-  data: function() {
-    return {
-      todoItems: []
-    }
-  },
+  props: ['todoItems'],
   methods: {
     removeTodo: function(todoItem, index) {
       localStorage.removeItem(todoItem);
@@ -29,15 +25,6 @@ export default {
       todoItem.completed = !todoItem.completed;
       localStorage.removeItem(todoItem.item);
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
-    }
-  },
-  created: function() {
-    if (localStorage.length > 0) {
-      for (var i = 0; i < localStorage.length; i++) {
-        if (localStorage.key(i) !== 'loglevel:webpack-dev-server') {
-          this.todoItems.push((JSON.parse(localStorage.getItem(localStorage.key(i)))));
-        }
-      }
     }
   }
 }
