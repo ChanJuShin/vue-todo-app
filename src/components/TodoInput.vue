@@ -38,7 +38,6 @@ input:focus {
   border-radius: 5px;
 }
 .inputBox input {
-  width: calc(100%  - 6rem);
   border-style: none;
   font-size: 0.9rem;
 }
