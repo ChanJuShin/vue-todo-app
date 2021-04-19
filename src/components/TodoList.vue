@@ -2,7 +2,7 @@
   <div>
     <ul>
       <li v-for="(todoItem, index) in todoItems" :key="todoItem.item" class="shadow">
-        <i class="checkBtn fas fa-check" :class="{ checkBtnCompleted: todoItem.completed }" @click="toggleComplete(todoItem)"></i>
+        <i class="checkBtn fas fa-check" :class="{ checkBtnCompleted: todoItem.completed }" @click="toggleTodoItem(todoItem, index)"></i>
         <span :class="{ textCompleted: todoItem.completed }">{{ todoItem.item }}</span>
         <span class="removeBtn" @click="removeTodoItem(todoItem, index)">
           <i class="fas fa-trash-alt"></i>
@@ -20,10 +20,8 @@ export default {
     removeTodoItem: function(todoItem, index) {
       this.$emit('removeTodoItem', todoItem, index);
     },
-    toggleComplete: function(todoItem) {
-      todoItem.completed = !todoItem.completed;
-      localStorage.removeItem(todoItem.item);
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+    toggleTodoItem: function(todoItem, index) {
+      this.$emit('toggleTodoItem', todoItem, index);
     }
   }
 }
