@@ -2,7 +2,7 @@
   <div id="app">
     <TodoHeader />
     <TodoInput @addTodoItem="addTodoItem"/>
-    <TodoList :todoItems="todoItems" @removeTodoItem="removeTodoItem" @toggleTodoItem="toggleTodoItem"/>
+    <TodoList @removeTodoItem="removeTodoItem" @toggleTodoItem="toggleTodoItem"/>
     <TodoFooter @clearTodoItems="clearTodoItems"/>
   </div>
 </template>
@@ -38,15 +38,6 @@ export default {
     clearTodoItems: function() {
       this.todoItems = [];
       localStorage.clear();
-    }
-  },
-  created: function() {
-    if (localStorage.length > 0) {
-      for (var i = 0; i < localStorage.length; i++) {
-        if (localStorage.key(i) !== 'loglevel:webpack-dev-server') {
-          this.todoItems.push((JSON.parse(localStorage.getItem(localStorage.key(i)))));
-        }
-      }
     }
   },
   components: {
