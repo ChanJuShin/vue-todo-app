@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <TodoHeader />
-    <TodoInput @addTodoItem="addTodoItem"/>
+    <TodoHeader/>
+    <TodoInput/>
     <TodoList @removeTodoItem="removeTodoItem" @toggleTodoItem="toggleTodoItem"/>
     <TodoFooter @clearTodoItems="clearTodoItems"/>
   </div>
@@ -21,11 +21,6 @@ export default {
     }
   },
   methods: {
-    addTodoItem: function(newTodoItem) {
-      var obj = { completed: false, item: newTodoItem };
-      localStorage.setItem(newTodoItem, JSON.stringify(obj));
-      this.todoItems.push(obj);
-    },
     removeTodoItem: function(todoItem, index) {
       localStorage.removeItem(todoItem.item);
       this.todoItems.splice(index, 1)

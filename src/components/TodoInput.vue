@@ -1,7 +1,7 @@
 <template>
   <div class="inputBox shadow">
-    <input type="text" v-model="newTodoItem" @keyup.enter="addTodo">
-    <span class="addContainer" @click="addTodo">
+    <input type="text" v-model="newTodoItem" @keyup.enter="addTodoItem">
+    <span class="addContainer" @click="addTodoItem">
       <i class="fas fa-plus addBtn"></i>
     </span>
     <Modal v-if="showModal">
@@ -25,9 +25,9 @@ export default {
     }
   },
   methods: {
-    addTodo: function() {
+    addTodoItem: function() {
       if (this.newTodoItem !== '') {
-        this.$emit('addTodoItem', this.newTodoItem);
+        this.$store.commit('addTodoItem', this.newTodoItem);
         this.clearInput();
       } else {
         this.showModal = !this.showModal;
