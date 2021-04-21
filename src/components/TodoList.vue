@@ -17,10 +17,10 @@ export default {
   name: "TodoList",
   methods: {
     removeTodoItem: function(todoItem, index) {
-      this.$emit('removeTodoItem', todoItem, index);
+      this.$store.commit('removeTodoItem', { todoItem, index });
     },
     toggleTodoItem: function(todoItem, index) {
-      this.$emit('toggleTodoItem', todoItem, index);
+      this.$store.commit('toggleTodoItem', { todoItem, index });
     }
   }
 }
