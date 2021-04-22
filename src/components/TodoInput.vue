@@ -18,14 +18,14 @@ import Modal from "./common/Modal";
 
 export default {
   name: "TodoInput",
-  data: function() {
+  data() {
     return {
       newTodoItem: '',
       showModal: false
     }
   },
   methods: {
-    addTodoItem: function() {
+    addTodoItem() {
       if (this.newTodoItem !== '') {
         this.$store.commit('addTodoItem', this.newTodoItem);
         this.clearInput();
@@ -33,7 +33,7 @@ export default {
         this.showModal = !this.showModal;
       }
     },
-    clearInput: function() {
+    clearInput() {
       this.newTodoItem = '';
     }
   },
