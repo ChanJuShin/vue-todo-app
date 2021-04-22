@@ -1,10 +1,10 @@
 <template>
   <div>
     <transition-group name="list" tag="ul">
-      <li v-for="(todoItem, index) in this.todoItems" :key="todoItem.item + index" class="shadow">
-        <i class="checkBtn fas fa-check" :class="{ checkBtnCompleted: todoItem.completed }" @click="toggleTodoItem(todoItem, index)"></i>
+      <li v-for="(todoItem, index) in todoItems" :key="todoItem.item + index" class="shadow">
+        <i class="checkBtn fas fa-check" :class="{ checkBtnCompleted: todoItem.completed }" @click="toggleTodoItem({ todoItem, index })"></i>
         <span :class="{ textCompleted: todoItem.completed }">{{ todoItem.item }}</span>
-        <span class="removeBtn" @click="removeTodoItem(todoItem, index)">
+        <span class="removeBtn" @click="removeTodoItem({ todoItem, index })">
           <i class="fas fa-trash-alt"></i>
         </span>
       </li>
@@ -13,20 +13,15 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
   name: "TodoList",
-  methods: {
-    removeTodoItem: function(todoItem, index) {
-      this.$store.commit('removeTodoItem', { todoItem, index });
-    },
-    toggleTodoItem: function(todoItem, index) {
-      this.$store.commit('toggleTodoItem', { todoItem, index });
-    }
-  },
   computed: {
     ...mapState(['todoItems'])
+  },
+  methods: {
+    ...mapMutations(['toggleTodoItem', 'removeTodoItem'])
   }
 }
 </script>
