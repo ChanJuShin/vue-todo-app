@@ -18,10 +18,10 @@ import { mapState, mapMutations } from 'vuex';
 export default {
   name: "TodoList",
   computed: {
-    ...mapState(['todoItems'])
+    ...mapState('todo', ['todoItems'])
   },
   methods: {
-    ...mapMutations(['toggleTodoItem', 'removeTodoItem'])
+    ...mapMutations('todo', ['toggleTodoItem', 'removeTodoItem'])
   }
 }
 </script>
